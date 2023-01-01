@@ -37,38 +37,47 @@ Pada jobsheet 4 terdapat 4 project yaitu komunikasi sensor dan feedback mengguna
   
   <img src="https://user-images.githubusercontent.com/49542850/210127141-16c8ccac-03bc-4d1c-b08f-6b6acf302fbf.png" width=600px>
 
+  3. Download kode dari source code sesuai project.
+  4. Kunjungi website Cayenne kemudian register atau login.
+  5. Tekan Add New > Device/Widget dan pilih Bring Your Own Thing pada bagian kiri.
 
-Download kode dari source code sesuai project.
-Kunjungi website Cayenne kemudian register atau login.
-Tekan Add New > Device/Widget dan pilih Bring Your Own Thing pada bagian kiri.
+ <img src="https://user-images.githubusercontent.com/49542850/210127143-f94a8192-7e57-48d2-85f1-ac51fb300468.png" width=600px>
 
+  6. Install library:
+     - Buka Arduino IDE
+     - Buka Sketch > Include Library > Manage Libraries.
+     - Cari library CayenneMQTT by myDevices kemudian install.
+     - Atau dapat melalui link CayenneMQTT dan upload pada libraries di direktori projek. Rename direktori menjadi CayenneMQTT.
+  7. Pilih perangkat yang sudah ditambahkan, kemudian rename board untuk mempermudah. Copy kredensial yang diberikan dan isikan dalam kode pada bagian yang sudah disediakan. Kemudian upload kode.
 
-Install library:
-Buka Arduino IDE
-Buka Sketch > Include Library > Manage Libraries.
-Cari library CayenneMQTT by myDevices kemudian install.
-Atau dapat melalui link CayenneMQTT dan upload pada libraries di direktori projek. Rename direktori menjadi CayenneMQTT.
-Pilih perangkat yang sudah ditambahkan, kemudian rename board untuk mempermudah. Copy kredensial yang diberikan dan isikan dalam kode pada bagian yang sudah disediakan. Kemudian upload kode.
+  <img src="https://user-images.githubusercontent.com/49542850/210127144-d112f437-7a3e-4969-af98-be98eb8568cf.png" width=600px>
+ 
+  8. Setelah ESP terdeteksi, kemudian tekan Add New > Device/Widget dan pilih custom widget tank.
 
+  <img src="https://user-images.githubusercontent.com/49542850/210127145-976c8dda-257f-4d08-b3e8-d7bcd965f6e5.png" width=600px>
+  
+  9. Masukkan Nama, Data: Tank level, Unit: Analog/Menyesuaikan, Channel: 1 (pada contoh), Min: 0, Max: 100, dan Display. Kemudian simpan.
 
-Setelah ESP terdeteksi, kemudian tekan Add New > Device/Widget dan pilih custom widget tank.
+  <img src="https://user-images.githubusercontent.com/49542850/210127136-a67a45d4-7c5a-4846-b810-5e2fe61bcdd6.png" width=600px>
+  
+  10. Lakukan hal yang sama untuk LED. Pilih widget tipe button, isikan Nama, Data: Digital Acuator, Unit: Digital, Channel: 0 (pada contoh), dan icon. Kemudian simpan.
+  
+  <img src="https://user-images.githubusercontent.com/49542850/210127139-b8c872b4-6f11-4bb1-80a1-afb11564d474.png" width=600px>
 
+  11. Jalankan kode.
+  12. LED dapat dikontrol dengan menekan icon widget LED.
 
-Masukkan Nama, Data: Tank level, Unit: Analog/Menyesuaikan, Channel: 1 (pada contoh), Min: 0, Max: 100, dan Display. Kemudian simpan.
+  <img src="https://user-images.githubusercontent.com/49542850/210127140-b82c9394-7435-4974-85ea-009bb44f0c0f.png" width=600px>
 
-
-Lakukan hal yang sama untuk LED. Pilih widget tipe button, isikan Nama, Data: Digital Acuator, Unit: Digital, Channel: 0 (pada contoh), dan icon. Kemudian simpan.
-
-
-Jalankan kode.
-LED dapat dikontrol dengan menekan icon widget LED.
-
-
-Nb. Untuk versi sensor DHT dapat mendownload kode untuk DHT dan konfigurasi Cayenne serupa. Widget type value, data temperature dan humidity.
-
-Penjelasan
 ESP membaca data analog dari sensor water level. Pada contoh, nilai yang didapat adalah 0 hingga 1900. Nilai ini dapat bervariasi tergantung jenis air, sensor, dan keakuratan (kualitas). Nilai tersebut diubah menjadi bentuk persentase agar lebih mudah dalam pembacaan dan kemudian diupload pada Cayenne melalui protokol MQTT. Konfigurasi channel dan value antara kode dan Cayenne harus sinkron agar data dapat dibaca. Respon dari web Cayenne memiliki keterlambatan sekitar 3-5 detik, sehingga data tidak real-time. Proses upload/publish dilakukan pada fungsi CAYENNE_OUT(channel){} dengan perintah Cayenne.virtualWrite(channel, data, [type], [unit]).
 
 Sedangkan untuk LED membutuhkan download data menggunakan fungsi CAYENNE_IN(channel){}. Pada fungsi tersebut digunakan perintah menyalakan LED dengan value berupa placeholder cayenne, yaitu digitalWrite(ledPin, !getValue.asInt()). Value tersebut didapatkan berdasarkan konfigurasi widget yaitu data digital 0/1.
 
 Keluaran
+
+  <img src="https://user-images.githubusercontent.com/118702169/210160999-4c19a4b2-4912-43e2-b3c6-82c6463e0a6e.mp4" width=600px>
+  
+
+
+
+
