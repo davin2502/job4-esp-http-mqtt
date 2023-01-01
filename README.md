@@ -223,11 +223,3 @@ Keluaran
 
   <img src="https://user-images.githubusercontent.com/49542850/210140799-ac4b5da1-6065-4c54-89ba-ed26331e8e8c.png" width=600px>
 
-Kesimpulan
-
-
-
-
-
-
-
