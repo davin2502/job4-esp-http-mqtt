@@ -263,28 +263,20 @@ Platform IFTTT mengijinkan otomasi seperti adafruit agar dapat terhubung dengan 
   8. Lakukan hal yang sama untuk setiap informasi yang akan ditampilkan Cayenne. Pada contoh digunakan 4 channel.
   9. Jalankan kode. Kode dapat digunakan untuk menerima hingga 3 ESP berbeda dengan struktur data yang sama.
   
-  ### Keluaran
+### Keluaran
 
    <img src="https://user-images.githubusercontent.com/49542850/210165345-acf2ac33-956f-49f4-a5cb-c0dae72cace2.png" width=600px>
    
    <img src="https://user-images.githubusercontent.com/118702169/210168226-30885f94-3d9e-4a7d-830c-427b088942a9.mp4" width=600px>
    
-  ### Kesimpulan
-    - MQTT merupakan protokol yang memungkinkan ESP untuk dapat berkomunikasi dengan sistem yang terdapat pada cloud seperti Cayenne, Adafruit IO, dan ThingSpeak.
-    - Cayenne, Adafruit IO, dan ThingSpeak merupakan beberapa platform untuk memonitoring perangkat IoT secara cloud melalui web service. Beberapa platform menyediakan 
-    fitur beragam mulai dari monitoring, controlling, hingga autonomous action.
-    - Cayenne memiliki fitur utama yaitu monitoring dan controlling. Cayenne mampu membaca data yang dikirimkan ESP melalui channel-channel yang dibuat pada Cayenne 
-    untuk membedakan data serta memberikan input kepada ESP (komunikasi 2 arah). Cayenne juga mampu melakukan autonomous action seperti jika salah satu data memenuhi 
-    syarat, maka cayenne dapat mengubah data2 atau memberikan feedback dan seterusnya.
-    - Adafruit memiliki fitur yang lebih langkap dengan klasifikasi setiap perangkat kedalam feeds. Sehingga setiap kali data dari ESP dikirim, data diteruskan pada 
-    group (feeds) yang ada. Adafruit juga memiliki fitur control seperti toggle dan dapat terintegrasi dengan platform autonomous seperti IFTTT.
-    - IFTTT merupakan salah satu platform/protokol otomasi yang terhubung dengan berbagai services. Salah satunya adalah google assistant yang memungkinkan kontrol 
-    melalui smartphone. IFTTT menghubungkan service seperti google assistant dengan adafruit agar dapat mengontrol dashboard pada adafruit.
-    - ThingSpeak merupakan salah satu platform IoT yang sangat dasar. Platform ini hanya memiliki fitur monitoring (sejauh yang saya pahami) dan tidak selengkap 
-    Adafruit IO maupun Cayenne. Untuk pengiriman data pada ThingSpeak dibedakan dengan suatu field untuk masing-masing data.
-    - Protokol ESPNOW memungkinkan ESP dapat berkomunikasi satu sama lain melalui sebuah kanal jaringan (WiFi). Akan tetapi, ESPNOW kurang cocok digunakan bersamaan 
-    dengan MQTT atau WiFi mode station. Karena saat MQTT melakukan komunikasi dengan server cloud, ESPNOW akan terhenti dan data yang dikirim akan gagal. Akan tetapi 
-    setelah proses upload selesai, ESPNOW dapat berkomunikasi kembali.
+## Kesimpulan
+  - MQTT merupakan protokol yang memungkinkan ESP untuk dapat berkomunikasi dengan sistem yang terdapat pada cloud seperti Cayenne, Adafruit IO, dan ThingSpeak.
+  - Cayenne, Adafruit IO, dan ThingSpeak merupakan beberapa platform untuk memonitoring perangkat IoT secara cloud melalui web service. Beberapa platform menyediakan fitur beragam mulai dari monitoring, controlling, hingga autonomous action.
+  - Cayenne memiliki fitur utama yaitu monitoring dan controlling. Cayenne mampu membaca data yang dikirimkan ESP melalui channel-channel yang dibuat pada Cayenne untuk membedakan data serta memberikan input kepada ESP (komunikasi 2 arah). Cayenne juga mampu melakukan autonomous action seperti jika salah satu data memenuhi syarat, maka cayenne dapat mengubah data2 atau memberikan feedback dan seterusnya.
+  - Adafruit memiliki fitur yang lebih langkap dengan klasifikasi setiap perangkat kedalam feeds. Sehingga setiap kali data dari ESP dikirim, data diteruskan pada group (feeds) yang ada. Adafruit juga memiliki fitur control seperti toggle dan dapat terintegrasi dengan platform autonomous seperti IFTTT.
+  - IFTTT merupakan salah satu platform/protokol otomasi yang terhubung dengan berbagai services. Salah satunya adalah google assistant yang memungkinkan kontrol melalui smartphone. IFTTT menghubungkan service seperti google assistant dengan adafruit agar dapat mengontrol dashboard pada adafruit.
+  - ThingSpeak merupakan salah satu platform IoT yang sangat dasar. Platform ini hanya memiliki fitur monitoring (sejauh yang saya pahami) dan tidak selengkap Adafruit IO maupun Cayenne. Untuk pengiriman data pada ThingSpeak dibedakan dengan suatu field untuk masing-masing data.
+  - Protokol ESPNOW memungkinkan ESP dapat berkomunikasi satu sama lain melalui sebuah kanal jaringan (WiFi). Akan tetapi, ESPNOW kurang cocok digunakan bersamaan dengan MQTT atau WiFi mode station. Karena saat MQTT melakukan komunikasi dengan server cloud, ESPNOW akan terhenti dan data yang dikirim akan gagal. Akan tetapi setelah proses upload selesai, ESPNOW dapat berkomunikasi kembali.
    
 
 
