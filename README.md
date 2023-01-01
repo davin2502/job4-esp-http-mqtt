@@ -73,7 +73,7 @@ ESP membaca data analog dari sensor water level. Pada contoh, nilai yang didapat
 
 Sedangkan untuk LED membutuhkan download data menggunakan fungsi CAYENNE_IN(channel){}. Pada fungsi tersebut digunakan perintah menyalakan LED dengan value berupa placeholder cayenne, yaitu digitalWrite(ledPin, !getValue.asInt()). Value tersebut didapatkan berdasarkan konfigurasi widget yaitu data digital 0/1.
 
-Keluaran
+### Keluaran
 
   <img src="https://user-images.githubusercontent.com/118702169/210160999-4c19a4b2-4912-43e2-b3c6-82c6463e0a6e.mp4" width=600px>
   
@@ -185,7 +185,7 @@ Prinsip kerja dari percobaan ini sama dengan percobaan sebelumnya (A). Adafruit.
 
 Platform IFTTT mengijinkan otomasi seperti adafruit agar dapat terhubung dengan layanan google assistant. IFTTT menyediakan 2 applets (trigger perkondisian) yang masing-masing hanya dapat diisi perkondisian tunggal if-then. Dari applets ini masing-masing dibuat trigger untuk menyalakan dan mematikan LED. Platform IFTTT harus terintregasi dengan google home pada smartphone agar dapat digunakan. Jika sudah terintegrasi, maka ketika user menggunakan google assistant dengan trigger yang sudah dibuat, IFTTT akan memberikan sinyal ke feed adafruit. Jika nilai yang diberikan terbaca, hasilnya akan terlihat pada dashboard berupa toggle LED. Maka LED yang ada pada ESP akan otomatis berubah kondisi. Selama ESP dan smartphone terhubung dengan jaringan internet, maka kedua device dapat saling berkomunikasi jarak jauh melalui google assistant untuk mengontrol LED, serta memonitor suhu melalui website adafruit.io.
 
-Keluaran
+### Keluaran
 
   <img src="https://user-images.githubusercontent.com/118702169/210161208-107a5fc8-cd25-46bd-81da-bd3c12a9e04b.mp4" width=600px>
   
@@ -219,7 +219,65 @@ Keluaran
   10. Cari kode bagian ThingSpeak.setField() untuk menyesuaikan field dengan format ThingSpeak.setField(field, value).
   11. Jalankan kode dan pastikan data terbaca pada chart thingspeak.
 
-Keluaran
+### Keluaran
 
   <img src="https://user-images.githubusercontent.com/49542850/210140799-ac4b5da1-6065-4c54-89ba-ed26331e8e8c.png" width=600px>
+
+## Percobaan D. Komunikasi Multipoint ESP-Sensor to Point dengan Cayenne
+### Rangkaian & Instalasi
+  1. Siapkan ESP32 dan hubungkan ke Arduino IDE. Siapkan sensor DHT (atau lainnya).
+  2. Buat skema berikut.
+
+  <img src="https://user-images.githubusercontent.com/49542850/210164985-5d752e07-237d-4214-b371-6880f32a0cd3.png" width=600px>
+  
+### Pengirim
+  1. Download kode dari source code sesuai project.
+  2. Buat rangkaian berikut.
+
+  <img src="https://user-images.githubusercontent.com/49542850/210139395-95c4d10c-3d9e-4898-ba3d-0165420ff2dc.png" width=600px>
+  
+  3. Ganti mac address pada kode broadcastAddress[] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff} dengan mac address slave (koordinator).
+  4. Ubah espNumber dengan angka unik 1 sampai 3 sebagai id. Antar pengirim harus memiliki id berbeda.
+  5. Jalankan kode. Beberapa data yang dikirim mungkin akan fail karena terjadi jeda saat ESP penerima melakukan publish ke Cayenne.
+
+### Penerima
+  1. Download kode dari source code sesuai project. Pastikan library Cayenne sudah terinstal.
+  2. Hubungkan ESP dengan Arduino IDE.
+  3. Kunjungi website Cayenne kemudian register atau login.
+  4. Tekan Add New > Device/Widget dan pilih Bring Your Own Thing pada bagian kiri.
+
+  <img src="https://user-images.githubusercontent.com/49542850/210127143-f94a8192-7e57-48d2-85f1-ac51fb300468.png" width=600px>
+  
+  5. Pilih perangkat yang sudah ditambahkan, kemudian rename board untuk mempermudah. Copy kredensial yang diberikan dan isikan dalam kode pada bagian yang sudah disediakan. Kemudian upload kode. Pastikan ssid dan password diisi dengan hotspot/AP yang terhubung dengan internet.
+
+  <img src="https://user-images.githubusercontent.com/49542850/210127144-d112f437-7a3e-4969-af98-be98eb8568cf.png" width=600px>
+  
+  6. Setelah ESP terdeteksi, kemudian tekan Add New > Device/Widget dan pilih custom value.
+
+  <img src="https://user-images.githubusercontent.com/49542850/210127145-976c8dda-257f-4d08-b3e8-d7bcd965f6e5.png" width=600px>
+  
+  7. Masukkan Nama, Data: Temperature, Unit: Celcius, Channel: 1 (pada contoh), Display. Kemudian simpan. Atau klik tombol + pada widget yang akan otomatis dibuat ketika kode diupload.
+
+  <img src="https://user-images.githubusercontent.com/49542850/210165004-60f57c80-eae8-45f4-824c-75fe34515efb.png" width=600px>
+  
+  8. Lakukan hal yang sama untuk setiap informasi yang akan ditampilkan Cayenne. Pada contoh digunakan 4 channel.
+  9. Jalankan kode. Kode dapat digunakan untuk menerima hingga 3 ESP berbeda dengan struktur data yang sama.
+  
+  ### Keluaran
+
+   <img src="https://user-images.githubusercontent.com/49542850/210165345-acf2ac33-956f-49f4-a5cb-c0dae72cace2.png" width=600px>
+   
+   <img src="https://user-images.githubusercontent.com/118702169/210168226-30885f94-3d9e-4a7d-830c-427b088942a9.mp4" width=600px>
+   
+  ### Kesimpulan
+    - MQTT merupakan protokol yang memungkinkan ESP untuk dapat berkomunikasi dengan sistem yang terdapat pada cloud seperti Cayenne, Adafruit IO, dan ThingSpeak.
+    - Cayenne, Adafruit IO, dan ThingSpeak merupakan beberapa platform untuk memonitoring perangkat IoT secara cloud melalui web service. Beberapa platform menyediakan fitur beragam mulai dari monitoring, controlling, hingga autonomous action.
+    - Cayenne memiliki fitur utama yaitu monitoring dan controlling. Cayenne mampu membaca data yang dikirimkan ESP melalui channel-channel yang dibuat pada Cayenne untuk membedakan data serta memberikan input kepada ESP (komunikasi 2 arah). Cayenne juga mampu melakukan autonomous action seperti jika salah satu data memenuhi syarat, maka cayenne dapat mengubah data2 atau memberikan feedback dan seterusnya.
+    - Adafruit memiliki fitur yang lebih langkap dengan klasifikasi setiap perangkat kedalam feeds. Sehingga setiap kali data dari ESP dikirim, data diteruskan pada group (feeds) yang ada. Adafruit juga memiliki fitur control seperti toggle dan dapat terintegrasi dengan platform autonomous seperti IFTTT.
+    - IFTTT merupakan salah satu platform/protokol otomasi yang terhubung dengan berbagai services. Salah satunya adalah google assistant yang memungkinkan kontrol melalui smartphone. IFTTT menghubungkan service seperti google assistant dengan adafruit agar dapat mengontrol dashboard pada adafruit.
+    - ThingSpeak merupakan salah satu platform IoT yang sangat dasar. Platform ini hanya memiliki fitur monitoring (sejauh yang saya pahami) dan tidak selengkap Adafruit IO maupun Cayenne. Untuk pengiriman data pada ThingSpeak dibedakan dengan suatu field untuk masing-masing data.
+    - Protokol ESPNOW memungkinkan ESP dapat berkomunikasi satu sama lain melalui sebuah kanal jaringan (WiFi). Akan tetapi, ESPNOW kurang cocok digunakan bersamaan dengan MQTT atau WiFi mode station. Karena saat MQTT melakukan komunikasi dengan server cloud, ESPNOW akan terhenti dan data yang dikirim akan gagal. Akan tetapi setelah proses upload selesai, ESPNOW dapat berkomunikasi kembali.
+   
+
+
 
