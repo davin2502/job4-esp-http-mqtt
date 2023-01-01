@@ -131,51 +131,70 @@ Keluaran
   3. Tambahkan rumah atau gunakan rumah yang sudah ada.
   4. Pilih Setting (gambar gerigi pada home) > Works with google dan cari IFTTT. Jika sudah, abaikan peringatan no device compatible karena kita belum menambahkan trigger pada IFTTT.
 
+  <img src="https://user-images.githubusercontent.com/49542850/210139114-d3ad40c5-db53-4f0f-b729-1566e858b665.png" width=600px>
+  
+  5. Kembali ke website IFTTT. Pada halaman utama, tekan Create.
 
-Kembali ke website IFTTT. Pada halaman utama, tekan Create.
+  <img src="https://user-images.githubusercontent.com/49542850/210132148-4a129b7a-08a2-462d-8a90-ce9400b9d566.png" width=600px>
 
-<img src="" width=600px>
+  6. Halaman ini menunjukkan perkondisian. Kita akan memasukkan google assistant pada bagian if dan adafruit pada bagian then. IF google assistant (trigger) then adafruit (execute).
 
-Halaman ini menunjukkan perkondisian. Kita akan memasukkan google assistant pada bagian if dan adafruit pada bagian then. IF google assistant (trigger) then adafruit (execute).
+  <img src="https://user-images.githubusercontent.com/49542850/210139120-7a30585a-3e57-4798-9918-1fffae175ccc.png" width=600px>
+  
+  7. Pilih bagian IF dan tambahkan google assistant.
 
+  <img src="https://user-images.githubusercontent.com/49542850/210139121-deac9f87-bd3e-400a-96e3-84d1cc8e35d0.png" width=600px>
+  
+  8. Pilih Activate Scene dan masukkan kata kunci untuk trigger, contoh "turn on LED". Pastikan google home sudah terintregasi dengan IFTTT, jika tidak maka akan diminta untuk melakukan integrasi (connect).
 
-Pilih bagian IF dan tambahkan google assistant.
+  <img src="https://user-images.githubusercontent.com/49542850/210139122-93dfd336-a9ea-433a-9583-4da18948c248.png" width=600px>
+  
+  <img src="https://user-images.githubusercontent.com/49542850/210139123-9cac3047-9e8f-4709-8523-9f3c93a44a39.png" width=600px>
+  
+  9. Selanjutnya, pada bagian THEN THAT, tambahkan service adafruit.
 
+  <img src="https://user-images.githubusercontent.com/49542850/210139124-17f35a8c-7860-4da6-8f90-ac709855528d.png" width=600px>
+  
+  10. Pilih Send data to adafruit dan lakukan integrasi (connect).
 
-Pilih Activate Scene dan masukkan kata kunci untuk trigger, contoh "turn on LED". Pastikan google home sudah terintregasi dengan IFTTT, jika tidak maka akan diminta untuk melakukan integrasi (connect).
+  <img src="https://user-images.githubusercontent.com/49542850/210139107-b9fa0bbe-ca33-4124-9eb0-0fae3f1c9478.png" width=600px>
+  
+  11. Isikan feed yang sudah dibuat, dalam hal ini adalah LED karena kita akan mengontrol LED melalui google assistant. Pilih data dengan nilai yang akan kita kirim. Pada contoh adalah "1" yang artinya akan memberikan trigger ON pada feed LED. Pastikan nilai tersebut sesuai dengan nilai data yang kita berikan saat membuat block di dashboard.
 
+  <img src="https://user-images.githubusercontent.com/49542850/210139109-665aeaae-f49a-4576-90ac-2034c98fa580.png" width=600px>
+  
+  12. Setelah selesai, tekan Continue dan Finish.
 
+  <img src="https://user-images.githubusercontent.com/49542850/210139110-b97c68aa-0463-4db1-bca4-cc8f98da4646.png" width=600px>
+  
+  13. Ulangi langkah Create untuk membuat trigger OFF.
 
+  <img src="https://user-images.githubusercontent.com/49542850/210139111-a72df196-a113-479c-be7d-44a2ff052084.png" width=600px>
+  
+  14. Buka google home pada smartphone. Tekan profile > Assistant settings > Routines > New, kemudian tambahkan starter voice. Isikan trigger (voice) kemudian simpan.
 
-Selanjutnya, pada bagian THEN THAT, tambahkan service adafruit.
+  <img src="https://user-images.githubusercontent.com/49542850/210139117-048121b3-e4a2-4a16-98b9-9629078ac1ec.png" width=600px>
+  
+  15. Pilih actions > Adjust home devices > Add scenes > pilih actions yang telah dibuat di IFTTT.
 
-
-Pilih Send data to adafruit dan lakukan integrasi (connect).
-
-
-Isikan feed yang sudah dibuat, dalam hal ini adalah LED karena kita akan mengontrol LED melalui google assistant. Pilih data dengan nilai yang akan kita kirim. Pada contoh adalah "1" yang artinya akan memberikan trigger ON pada feed LED. Pastikan nilai tersebut sesuai dengan nilai data yang kita berikan saat membuat block di dashboard.
-
-
-Setelah selesai, tekan Continue dan Finish.
-
-
-Ulangi langkah Create untuk membuat trigger OFF.
-
-
-Buka google home pada smartphone. Tekan profile > Assistant settings > Routines > New, kemudian tambahkan starter voice. Isikan trigger (voice) kemudian simpan.
-
-
-Pilih actions > Adjust home devices > Add scenes > pilih actions yang telah dibuat di IFTTT.
-
-
-Coba buka google assistant pada smartphone dan katakan kata trigger. Misal "Hey google, turn on LED". Jika LED dapat menyala maka google assistant sudah terintegrasi dan dapat digunakan dimanapun selama kedua device (ESP dan smartphone) terhubung dengan internet.
-Penjelasan
+  <img src="https://user-images.githubusercontent.com/49542850/210139119-951dcef8-7442-4bb9-92ee-dfc4a3a9f6f0.png" width=600px>
+  
+  16. Coba buka google assistant pada smartphone dan katakan kata trigger. Misal "Hey google, turn on LED". Jika LED dapat menyala maka google assistant sudah terintegrasi dan dapat digunakan dimanapun selama kedua device (ESP dan smartphone) terhubung dengan internet.
+  
 Prinsip kerja dari percobaan ini sama dengan percobaan sebelumnya (A). Adafruit.io mirip seperti Cayenne. Adafruit akan membaca data yang diterima ESP melalui sensor DHT berupa suhu dan kelembaban. Data tersebut dipublish dengan perintah Adafruit_MQTT_Publish melalui feed sehingga akan terbaca pada block gauge yang ada di dashboard. Sedangkan untuk LED dikontrol melalui dashboard adafruit. ESP board akan melakukan subscribe dengan perintah Adafruit_MQTT_Subscribe terhadap feed LED dan menerima data berupa 0 atau 1 (sesuai data yang diset saat ON/OFF pada toggle block).
 
 Platform IFTTT mengijinkan otomasi seperti adafruit agar dapat terhubung dengan layanan google assistant. IFTTT menyediakan 2 applets (trigger perkondisian) yang masing-masing hanya dapat diisi perkondisian tunggal if-then. Dari applets ini masing-masing dibuat trigger untuk menyalakan dan mematikan LED. Platform IFTTT harus terintregasi dengan google home pada smartphone agar dapat digunakan. Jika sudah terintegrasi, maka ketika user menggunakan google assistant dengan trigger yang sudah dibuat, IFTTT akan memberikan sinyal ke feed adafruit. Jika nilai yang diberikan terbaca, hasilnya akan terlihat pada dashboard berupa toggle LED. Maka LED yang ada pada ESP akan otomatis berubah kondisi. Selama ESP dan smartphone terhubung dengan jaringan internet, maka kedua device dapat saling berkomunikasi jarak jauh melalui google assistant untuk mengontrol LED, serta memonitor suhu melalui website adafruit.io.
 
 Keluaran
- B.DHT.mp4 
+
+  <img src="https://user-images.githubusercontent.com/118702169/210161208-107a5fc8-cd25-46bd-81da-bd3c12a9e04b.mp4" width=600px>
+  
+  <img src="" width=600px>
+
+
+
+
+
 
 
 
