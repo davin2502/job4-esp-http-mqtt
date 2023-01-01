@@ -189,9 +189,41 @@ Keluaran
 
   <img src="https://user-images.githubusercontent.com/118702169/210161208-107a5fc8-cd25-46bd-81da-bd3c12a9e04b.mp4" width=600px>
   
-  <img src="" width=600px>
 
+## Project C - Komunikasi ESP-Sensor dengan Thingspeak
+### Rangkaian & Instalasi
+  1. Siapkan ESP32 dan hubungkan ke Arduino IDE. Siapkan sensor DHT (atau lainnya).
+  2. Buat rangkaian berikut.
 
+  <img src="https://user-images.githubusercontent.com/49542850/210139395-95c4d10c-3d9e-4898-ba3d-0165420ff2dc.png" width=600px>
+  
+  3. Download kode dari source code sesuai project.
+  4. Kunjungi website Thingspeak kemudian register atau login.
+  5. Buat channel baru dengan New channel.
+
+  <img src="https://user-images.githubusercontent.com/49542850/210140673-89fdda9c-7887-4ed3-b037-472364b51599.png" width=600px>
+  
+  6. Isikan nama dan centang 2 field untuk suhu dan kelembaban (menyesuaikan yang akan ditampilkan).
+
+  <img src="https://user-images.githubusercontent.com/49542850/210140674-1cbc71f0-bbba-4f62-9b29-fb88cb0b38cf.png" width=600px>
+  
+  7. Secara default akan ada 2 chart atau grafik yang menampilkan nilai field 1 dan 2. Namun bisa juga ditambahkan widget untuk memperbagus tampilan dengan Add widget, lalu atur delay (disarankan >2s) dan informasi lainnya.
+
+  <img src="https://user-images.githubusercontent.com/49542850/210140676-ce81a14f-13fe-46be-8cf7-71975ccd4c95.png" width=600px>
+  
+  8. Masuk ke menu api keys dan copy write key, masukkan ke dalam kode.
+
+  <img src="https://user-images.githubusercontent.com/49542850/210140677-0c343ab0-2fb9-408e-adbc-b2020aa55aa7.png" width=600px>
+  
+  9. Masuk ke kode, ubah bagian unsigned long myChannelNumber = 1; dengan urutan channel Anda. Jika pertama, maka tulis 1, dst.
+  10. Cari kode bagian ThingSpeak.setField() untuk menyesuaikan field dengan format ThingSpeak.setField(field, value).
+  11. Jalankan kode dan pastikan data terbaca pada chart thingspeak.
+
+Keluaran
+
+  <img src="https://user-images.githubusercontent.com/49542850/210140799-ac4b5da1-6065-4c54-89ba-ed26331e8e8c.png" width=600px>
+
+Kesimpulan
 
 
 
